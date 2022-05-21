@@ -6,6 +6,7 @@
 using namespace std;
 
 sf::Font font;
+const string font_fam = "arial.ttf";
 
 void renderNode(sf::RenderWindow window, Node node) {
     sf::CircleShape circ(100.f);
@@ -16,11 +17,18 @@ void renderNode(sf::RenderWindow window, Node node) {
     val.setFillColor(sf::Color::Black);
 }
 
+int loadFont() {
+    if (!font.loadFromFile(font_fam)) {
+        cerr << "Error: Can't load font " << font_fam << "\n";
+        return -1;
+    }
+    return 0;
+}
+
 int main()
 {
-    if (!font.loadFromFile("arial.ttf")) {
-        cerr << "Error: Can't load font\n";
-        return 0;
+    if (loadFont() != 0) {
+        return -1; // exit with error if can't load font
     }
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
