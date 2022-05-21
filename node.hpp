@@ -1,8 +1,6 @@
 #ifndef NODE_H_
 #define NODE_H_
 
-using namespace std;
-
 enum Status {Complete, Processing};
 
 class Node {

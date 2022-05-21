@@ -21,6 +21,21 @@ void renderNode(sf::RenderWindow &window, Node node) {
     window.draw(val);
 }
 
+void renderEdge(sf::RenderWindow &window, Node node1, Node node2) {
+    sf::ConvexShape arrow(7);
+}
+
+void renderGraph(sf::RenderWindow &window, Graph graph) {
+    vector<Node> nodes = graph.getNodes();
+    unordered_set<pair<int, int>, pair_hash> edges = graph.getEdges();
+    for (int i = 0; i < nodes.size(); ++i) {
+        renderNode(window, nodes[i]);
+    }
+    for (const pair<int, int>& edge : edges) {
+        renderEdge(window, nodes[edge.first], nodes[edge.second]);
+    }
+}
+
 int loadFont() {
     if (!font.loadFromFile(font_fam)) {
         cerr << "Error: Can't load font " << font_fam << "\n";
@@ -34,9 +49,7 @@ int main()
     if (loadFont() != 0) {
         return -1; // exit with error if can't load font
     }
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Graph Algorithms Visualizer");
     Node node{2,2,50};
 
     while (window.isOpen())

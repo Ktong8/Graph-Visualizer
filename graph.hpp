@@ -3,18 +3,26 @@
 
 #include<vector>
 #include<unordered_map>
+#include<unordered_set>
 #include "node.hpp"
 
 using namespace std;
+
+struct pair_hash {
+  inline size_t operator()(const pair<int, int>& edge) const {
+    return 100 * edge.first + edge.second;
+  }
+};
 
 class Graph {
   private:
     vector<Node> m_nodes;
     vector<unordered_map<int, int>> m_adjacency_list;
+    unordered_set<pair<int, int>, pair_hash> m_edges;
     int size;
   public:
     Graph() : size{0} {
-      
+
     }
 
     // modifiers
@@ -27,6 +35,8 @@ class Graph {
 
     // getters
     Node getNode(int n);
+    vector<Node> getNodes();
+    unordered_set<pair<int, int>, pair_hash> getEdges();
 
     // unweighted
     void bfs(int source);
