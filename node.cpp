@@ -1,25 +1,25 @@
 #include "node.hpp"
 
-Node::setVal(int val) {
+void Node::setVal(int val) {
     this->val = val;
 }
 
-Node::setX(int x) {
+void Node::setX(int x) {
     this->x = x;
 }
 
-Node::setY(int y) {
+void Node::setY(int y) {
     this->y = y;
 }
 
-Node::getX() {
+int Node::getX() {
     return this->x;
 }
 
-Node::getY() {
+int Node::getY() {
     return this->y;
 }
 
-Node::getVal() {
+int Node::getVal() {
     return this->val;
 }
