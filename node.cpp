@@ -27,3 +27,11 @@ int Node::getVal() {
 bool Node::isProcessing() {
     return this->status == Processing;
 }
+
+bool Node::isComplete() {
+    return this->status == Complete;
+}
+
+bool Node::isReached() {
+    return this->status != Unreached;
+}

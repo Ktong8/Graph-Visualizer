@@ -66,7 +66,7 @@ void Graph::dfs(int source) {
 
 }
 
-void Graph::topologicalSort() {
+vector<int> Graph::topologicalSort() {
 
 }
 
