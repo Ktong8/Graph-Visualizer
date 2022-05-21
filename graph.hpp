@@ -2,7 +2,7 @@
 #define GRAPH_H_
 
 #include<vector>
-#include<unordered_set>
+#include<unordered_map>
 #include "node.hpp"
 
 using namespace std;
@@ -10,15 +10,19 @@ using namespace std;
 class Graph {
   private:
     vector<Node> m_nodes;
-    vector<unordered_set<int>> m_adjacency_list;
-    vector<vector<int>> m_adjacency_matrix;
+    vector<unordered_map<int, int>> m_adjacency_list;
+    int size;
   public:
-    Graph();
+    Graph() : size{0} {
+      
+    }
 
     // modifiers
-    void addNode();
-    void addEdge(int u, int v, int weight);
-    void removeEdge(int u, int v);
+    void addNode(Node node);
+    void addDirectedEdge(int u, int v, int weight);
+    void addUndirectedEdge(int u, int v, int weight);
+    void removeUndirectedEdge(int u, int v);
+    void removeDirectedEdge(int u, int v);
     void removeNode(int n);
 
     // getters

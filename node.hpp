@@ -3,19 +3,21 @@
 
 using namespace std;
 
+enum Status {Complete, Processing};
+
 class Node {
   private:
     int val;
-
+    Status status;
     // position on screen
     int x;
     int y;
 
   public:
-    Node() : x{0}, y{0}, val{0} {
+    Node() : x{0}, y{0}, val{0}, status{Complete} {
 
     };
-    Node(int x, int y, int val) : x{x}, y{y}, val{val} {
+    Node(int x, int y, int val) : x{x}, y{y}, val{val}, status{Complete} {
 
     };
     
@@ -25,6 +27,7 @@ class Node {
     int getVal();
     int getX();
     int getY();
+    bool isProcessing();
 };
 
 #endif

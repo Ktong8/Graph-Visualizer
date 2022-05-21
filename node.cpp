@@ -23,3 +23,7 @@ int Node::getY() {
 int Node::getVal() {
     return this->val;
 }
+
+bool Node::isProcessing() {
+    return this->status == Processing;
+}
