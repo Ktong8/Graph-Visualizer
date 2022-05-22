@@ -40,6 +40,15 @@ class Graph {
      * 
      */
     void resetNodes();
+
+    /**
+     * @brief Helper function for the DFS in topological sorting
+     * 
+     * @param node The current node being processed
+     * @param node_stack The stack of nodes being kept for topological
+     * sorting
+     */
+    void topologicalSortHelper(int node, stack<int>& node_stack);
   public:
     Graph() : m_size{0} {
 

@@ -103,12 +103,35 @@ void Graph::dfs(int source) {
     }
 }
 
+void Graph::topologicalSortHelper(int node, stack<int>& node_stack) {
+    m_nodes[node].setStatus(Processing);
+    for (const auto &[next, _] : m_adjacency_list[node]) {
+        if (!m_nodes[next].isReached()) {
+            topologicalSortHelper(next, node_stack);
+        }
+    }
+    node_stack.push(node);
+    m_nodes[node].setStatus(Complete);
+}
+
 vector<int> Graph::topologicalSort() {
-    return vector<int>(0);
+    resetNodes();
+    stack<int> node_stack;
+    for (int i = 0; i < m_size; ++i) {
+        if (!m_nodes[i].isReached()) {
+            topologicalSortHelper(i, node_stack);
+        }
+    }
+    vector<int> topologicalOrder;
+    while (!node_stack.empty()) {
+        topologicalOrder.push_back(node_stack.top());
+        node_stack.pop();
+    }
+    return topologicalOrder;
 }
 
 void Graph::tarjans() {
-
+    
 }
 
 void Graph:: kosarajus() {
