@@ -51,6 +51,13 @@ class Node {
     void setY(int y);
 
     /**
+     * @brief Set the status of this node
+     * 
+     * @param status the status to set the node to
+     */
+    void setStatus(Status status);
+
+    /**
      * @brief Get the Val at this node
      * 
      * @return the value at this node

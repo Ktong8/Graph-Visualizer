@@ -12,6 +12,10 @@ void Node::setY(int y) {
     this->y = y;
 }
 
+void Node::setStatus(Status status) {
+    this->status = status;
+}
+
 int Node::getX() {
     return this->x;
 }

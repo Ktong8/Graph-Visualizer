@@ -4,6 +4,7 @@
 #include<vector>
 #include<unordered_map>
 #include<unordered_set>
+#include<queue>
 #include "node.hpp"
 
 using namespace std;
@@ -31,9 +32,15 @@ class Graph {
     unordered_set<pair<int, int>, pair_hash> m_edges;
 
     // the number of nodes currently in the graph
-    int size;
+    int m_size;
+
+    /**
+     * @brief Resets the status of all nodes in the graph
+     * 
+     */
+    void resetNodes();
   public:
-    Graph() : size{0} {
+    Graph() : m_size{0} {
 
     }
 

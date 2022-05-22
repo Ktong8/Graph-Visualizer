@@ -4,7 +4,7 @@ void Graph::addNode(Node node) {
     m_nodes.push_back(node);
     unordered_map<int, int> temp;
     m_adjacency_list.push_back(temp);
-    size++;
+    m_size++;
 }
 
 void Graph::addDirectedEdge(int u, int v, int weight) {
@@ -37,8 +37,8 @@ void Graph::removeNode(int n) {
         m_edges.erase({n, next});
     }
     m_adjacency_list.erase(m_adjacency_list.begin() + n);
-    size--;
-    for (int i = 0; i < size; ++i) {
+    m_size--;
+    for (int i = 0; i < m_size; ++i) {
         if (m_adjacency_list[i].find(n) != m_adjacency_list[i].end()) {
             m_adjacency_list[i].erase(n);
             m_edges.erase({i, n});
@@ -58,16 +58,39 @@ unordered_set<pair<int, int>, pair_hash> Graph::getEdges() {
     return m_edges;
 }
 
-void Graph::bfs(int source) {
+void Graph::resetNodes() {
+    for (int i = 0; i < m_size; ++i) {
+        m_nodes[i].setStatus(Unreached);
+    }
+}
 
+void Graph::bfs(int source) {
+    resetNodes();
+    queue<int> nodes_queue;
+    nodes_queue.push(source);
+    while(!nodes_queue.empty()) {
+        int current = nodes_queue.front();
+        nodes_queue.pop();
+        if (m_nodes[current].isReached()) {
+            continue;
+        }
+        m_nodes[current].setStatus(Processing);
+        for (const auto &[next, _] : m_adjacency_list[current]) {
+            if (!m_nodes[next].isReached()) {
+                nodes_queue.push(next);
+            }
+        }
+        m_nodes[current].setStatus(Complete);
+    }
 }
 
 void Graph::dfs(int source) {
-
+    resetNodes();
+    
 }
 
 vector<int> Graph::topologicalSort() {
-
+    return vector<int>(0);
 }
 
 void Graph::tarjans() {
