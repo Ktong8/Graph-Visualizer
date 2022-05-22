@@ -5,6 +5,7 @@
 #include<unordered_map>
 #include<unordered_set>
 #include<queue>
+#include<stack>
 #include "node.hpp"
 
 using namespace std;

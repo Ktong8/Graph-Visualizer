@@ -71,13 +71,11 @@ void Graph::bfs(int source) {
     while(!nodes_queue.empty()) {
         int current = nodes_queue.front();
         nodes_queue.pop();
-        if (m_nodes[current].isReached()) {
-            continue;
-        }
         m_nodes[current].setStatus(Processing);
         for (const auto &[next, _] : m_adjacency_list[current]) {
             if (!m_nodes[next].isReached()) {
                 nodes_queue.push(next);
+                m_nodes[next].setStatus(Pending);
             }
         }
         m_nodes[current].setStatus(Complete);
@@ -86,7 +84,23 @@ void Graph::bfs(int source) {
 
 void Graph::dfs(int source) {
     resetNodes();
-    
+    stack<int> nodes_stack;
+    nodes_stack.push(source);
+    while (!nodes_stack.empty()) {
+        int current = nodes_stack.top();
+        nodes_stack.pop();
+
+        if (!m_nodes[current].isReached()) {
+            m_nodes[current].setStatus(Processing);
+        }
+
+        for (const auto &[next, _] : m_adjacency_list[current]) {
+            if (!m_nodes[next].isReached()) {
+                nodes_stack.push(next);
+            }
+        }
+        m_nodes[current].setStatus(Complete);
+    }
 }
 
 vector<int> Graph::topologicalSort() {

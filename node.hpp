@@ -3,10 +3,10 @@
 
 /**
  * @brief A Status enum to represent the status of each node, either
- * completed, processing, or unreached
+ * completed, processing, unreached, or pending
  * 
  */
-enum Status {Complete, Processing, Unreached};
+enum Status {Complete, Processing, Unreached, Pending};
 
 /**
  * @brief A Node class to represent a node in the graph, along with
